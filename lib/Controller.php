@@ -5,9 +5,19 @@ namespace MyApp;
 class Controller {
 
   private $_errors;
+  private $_values;
 
   public function __construct() {
     $this->_errors = new \stdClass();
+    $this->_values = new \stdClass();
+  }
+
+  protected function setValues($key, $value) {
+    $this->_values->$key = $value;
+  }
+
+  public function getValues() {
+    return $this->_values;
   }
 
   protected function setErrors($key, $error) {
@@ -15,7 +25,7 @@ class Controller {
   }
 
   public function getErrors($key) {
-    return isset($this->_errors->$key) ? $this->_errors->$key : '';
+    return isset($this->_errors->$key) ?  $this->_errors->$key : '';
   }
 
   protected function hasError() {
